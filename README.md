@@ -1,6 +1,3 @@
-# DW Test Automation  [![Build Status](https://master-1.jenkins.autodesk.com/buildStatus/icon?job=CloudPC%2Fdw-service-tests%2Fmaster)](https://master-1.jenkins.autodesk.com/job/CloudPC/job/dw-service-tests/job/master/)
-
-
 # Getting Started
 These instructions will get you a copy of the project up and running on your local machine for automation testing purposes.
 
