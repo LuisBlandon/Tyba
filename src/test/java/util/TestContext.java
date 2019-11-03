@@ -1,8 +1,5 @@
 package util;
 
-
-
-
 import static java.lang.ThreadLocal.withInitial;
 
 import java.util.HashMap;
@@ -14,7 +11,7 @@ import io.restassured.specification.RequestSpecification;
 public enum TestContext {
 
 	CONTEXT;
-	
+
 	private static final String WORKING_ENTITY = "WORKING_ENTITY";
 	private static final String REQUEST_SPECIFICATION = "REQUEST_SPECIFICATION";
 	private static final String RESPONSE = "RESPONSE";

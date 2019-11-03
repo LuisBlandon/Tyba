@@ -40,6 +40,7 @@ $ mvn test -Dcucumber.options="--tags @tagname
 ## Environment
 
 1. Modify file env.properties value ENV_KEY to setup environment to execute automation test, Define Environment, possible values Docker, Dev, Test, ExampleEnv
+2. Modify Run configuration to define environment VM Arguments:  -DENV_KEY=Dev
 
 
 **Authors**

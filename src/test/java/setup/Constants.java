@@ -8,6 +8,5 @@ public class Constants {
 	public final static String TEST_ENV = "Test";
 	public final static String DEV_ENV = "Dev";
 	public final static String DOCKER_ENV = "Docker";
-	public final static String EXAMPLE_ENV = "ExampleEnv";
 
 }

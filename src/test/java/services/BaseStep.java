@@ -1,29 +1,21 @@
 package services;
 
-
-
-import static util.TestContext.CONTEXT;
 import static io.restassured.http.ContentType.JSON;
-
-import java.io.File;
+import static util.TestContext.CONTEXT;
 
 import org.junit.Assert;
 
-import dto.RequestData;
-import com.adsk.dw.setup.ConfigureProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import bsh.org.objectweb.asm.Constants;
+import dto.RequestData;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import setup.ConfigureProperties;
+import setup.Constants;
 
 public abstract class BaseStep {
-	private static final String MULTIPART_FORM_DATA = "multipart/form-data";
-	private static final String XML_FORM_DATA = "application/xml";
-	private static final String PROCESS_FILE = "processFile";
-	private static final String FORM_URLENCODED = "application/x-www-form-urlencoded";
 
 	protected RequestSpecification getSpec() {
 		RequestSpecification spec = CONTEXT.getRequest();
@@ -77,35 +69,15 @@ public abstract class BaseStep {
 
 	private void prepareRequest(RequestData request) {
 		getSpec().given().baseUri(request.getBaseUri());
-	
+
 		getSpec().given().basePath(request.getBasePath());
 
-		if (request.getMultiparteFile() != null) {
-			File multipartFile = request.getMultiparteFile();
-			getSpec().contentType(MULTIPART_FORM_DATA).multiPart(PROCESS_FILE, multipartFile, XML_FORM_DATA);
-		}
-
-		if (request.getPort() > 0) {
-			getSpec().given().port(request.getPort());
-		}
-
-		if (request.getFormParams() != null) {
-			getSpec().formParams(request.getFormParams());
-		}
 		if (request.getPathParams() != null) {
 			getSpec().pathParams(request.getPathParams());
 		}
-		if (request.getToken() != null) {
-			getSpec().auth().oauth2(request.getToken());
-		}
-		if (request.isFormurlencoded() == true) {
-			getSpec().contentType(FORM_URLENCODED);
-		}
+
 		if (request.getQueryParamas() != null) {
 			getSpec().queryParams(request.getQueryParamas());
-		}
-		if (request.getHeaders() != null) {
-			getSpec().headers(request.getHeaders());
 		}
 
 	}
@@ -125,8 +97,6 @@ public abstract class BaseStep {
 			return ConfigureProperties.getMavenProperty("TestBaseUri");
 		case Constants.DEV_ENV:
 			return ConfigureProperties.getMavenProperty("DevBaseUri");
-		case Constants.EXAMPLE_ENV:
-			return ConfigureProperties.getMavenProperty("ExampleBaseUri");
 		default:
 			Assert.fail("BaseStep - Environment should be set to Docker,Test or Dev");
 			return null;
